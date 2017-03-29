@@ -3120,10 +3120,3 @@ int hci_le_read_remote_features(int dd, uint16_t handle, uint8_t *features, int 
 
 	return 0;
 }
-
-
-
-int main()
-{
-	return 0;
-}
