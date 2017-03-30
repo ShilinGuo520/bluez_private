@@ -7,8 +7,9 @@ INC = ./inc
 
 #源文件
 SRC = hci.o
-SRC +=bluetooth.o
-SRC +=bluez.o
+SRC += bluetooth.o
+SRC += hcitool.o
+SRC += oui.o
 #链接选项
 LCFLAGS = -I$(INC) -o
 #编译选项
