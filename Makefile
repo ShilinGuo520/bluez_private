@@ -6,12 +6,14 @@ CC = gcc
 INC = ./inc
 
 #源文件
-SRC = hci.o
-SRC += bluetooth.o
-SRC += hcitool.o
-SRC += oui.o
+SRC = src/hci.c
+SRC += src/bluetooth.c
+SRC += src/hcitool.c
+SRC += src/oui.c
+
 #链接选项
 LCFLAGS = -I$(INC) -o
+
 #编译选项
 CFLAGS = -I$(INC) -c
 
@@ -22,4 +24,4 @@ bluez:$(SRC)
 	$(CC) $(CFLAGS) $<
 
 clean:
-	rm *.o bluez
+	rm bluez
