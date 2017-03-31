@@ -3449,7 +3449,7 @@ static struct option main_options[] = {
 	{ "device",	1, 0, 'i' },
 	{ 0, 0, 0, 0 }
 };
-
+/*
 int main(int argc, char *argv[])
 {
 	int opt, i, dev_id = -1;
@@ -3462,6 +3462,8 @@ int main(int argc, char *argv[])
 			if (dev_id < 0) {
 				perror("Invalid device");
 				exit(1);
+			} else {
+				printf("func:%s,line:%d\n", __func__, __LINE__);
 			}
 			break;
 
@@ -3484,6 +3486,8 @@ int main(int argc, char *argv[])
 	if (dev_id != -1 && hci_devba(dev_id, &ba) < 0) {
 		perror("Device is not available");
 		exit(1);
+	} else {
+		printf("hci_devba done\n");
 	}
 
 	for (i = 0; command[i].cmd; i++) {
@@ -3500,5 +3504,40 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
+	return 0;
+}
+*/
+
+int main(int argc , char *argv[])
+{
+	int dev_id = -1;
+	int dd;
+	bdaddr_t ba;	
+	struct hci_dev_info di;
+	char local_name[15];
+
+        if (dev_id < 0) {
+                dev_id = hci_get_route(NULL);
+                if (dev_id < 0) {
+                        perror("Device is not available");
+                        exit(1);
+                }
+        }
+
+        if (hci_devinfo(dev_id, &di) < 0) {                                                                                                                   
+                perror("Can't get device info");
+                exit(1);
+        }
+
+        dd = hci_open_dev(dev_id);
+        if (dd < 0) {
+                perror("HCI device open failed");
+                exit(1);
+        }
+
+	hci_read_local_name(dd, 15, local_name, 25000);
+
+	printf("name:%s\n", local_name);
+	hci_close_dev(dd);
 	return 0;
 }
