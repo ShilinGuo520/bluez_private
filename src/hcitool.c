@@ -3449,64 +3449,6 @@ static struct option main_options[] = {
 	{ "device",	1, 0, 'i' },
 	{ 0, 0, 0, 0 }
 };
-/*
-int main(int argc, char *argv[])
-{
-	int opt, i, dev_id = -1;
-	bdaddr_t ba;
-
-	while ((opt=getopt_long(argc, argv, "+i:h", main_options, NULL)) != -1) {
-		switch (opt) {
-		case 'i':
-			dev_id = hci_devid(optarg);
-			if (dev_id < 0) {
-				perror("Invalid device");
-				exit(1);
-			} else {
-				printf("func:%s,line:%d\n", __func__, __LINE__);
-			}
-			break;
-
-		case 'h':
-		default:
-			usage();
-			exit(0);
-		}
-	}
-
-	argc -= optind;
-	argv += optind;
-	optind = 0;
-
-	if (argc < 1) {
-		usage();
-		exit(0);
-	}
-
-	if (dev_id != -1 && hci_devba(dev_id, &ba) < 0) {
-		perror("Device is not available");
-		exit(1);
-	} else {
-		printf("hci_devba done\n");
-	}
-
-	for (i = 0; command[i].cmd; i++) {
-		if (strncmp(command[i].cmd,
-				argv[0], strlen(command[i].cmd)))
-			continue;
-
-		command[i].func(dev_id, argc, argv);
-		break;
-	}
-
-	if (command[i].cmd == 0) {
-		fprintf(stderr, "Unknown command - \"%s\"\n", *argv);
-		exit(1);
-	}
-
-	return 0;
-}
-*/
 
 int main(int argc , char *argv[])
 {
